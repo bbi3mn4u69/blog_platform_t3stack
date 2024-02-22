@@ -1,8 +1,6 @@
-import { postRouter } from "~/server/api/routers/post";
+
 import { createTRPCRouter } from "~/server/api/trpc";
-import { uploadRouter } from "./routers/upload-aws";
-import { getPost } from "./routers/get-post";
-import { getDownloadLink } from "./routers/download-aws";
+import { postRouter } from "./routers/post-router";
 /**
  * This is the primary router for your server.
  *
@@ -10,9 +8,7 @@ import { getDownloadLink } from "./routers/download-aws";
  */
 export const appRouter = createTRPCRouter({
   post: postRouter,
-  uploadFile: uploadRouter,
-  getPost: getPost,
-  getDownloadLink: getDownloadLink
+  authentication: 
 });
 
 // export type definition of API

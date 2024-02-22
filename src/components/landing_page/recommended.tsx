@@ -52,7 +52,7 @@ const BlogComponent: React.FC<{
 };
 
 export default function Recommended() {
-  const getPost = api.getPost.getPost.useQuery();
+  const getPost = api.post.getPost.useQuery();
 
   return (
     <div>

@@ -1,4 +1,4 @@
-"use client";
+
 
 import { useFieldArray, useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -15,17 +15,12 @@ import {
 } from "../ui/form";
 import React, { useEffect, useState } from "react";
 import { usePublishButtonContext } from "./publish-button-context";
-// TODO: getsignedURL trpc
 import { useRouter } from "next/navigation";
-// TODO: blog content handling
 import { useSession } from "next-auth/react";
 import { useFloatingActionContext } from "./floating-action-context";
 // import { CiImageOn } from "react-icons/ci";
 import { api } from "~/utils/api";
 
-
-let titlePostResult: string
-let contentPostResult: string
 
 function readFile(file: File) {
   return new Promise((reslove, rejects) => {
@@ -42,7 +37,7 @@ export const Body = () => {
   const {data: session} = useSession()
 
   // create upload api
-  const uploadFile = api.uploadFile.uploadFile.useMutation({
+  const uploadFile = api.post.uploadFile.useMutation({
     onSuccess: () => {
       console.log("success")
       router.push("/(protected)/blog_reading_page")

@@ -5,11 +5,11 @@ import Image from "next/image";
 
 export default function Blog() {
   const [imageArray, setImageArray] = useState<string[]>([]);
-  const getPost = api.getPost.getPost.useQuery();
+  const getPost = api.post.getPost.useQuery();
   const downloadRoute = api.useContext()
-  const getSignedURL = api.getDownloadLink.downloadFile.useMutation({
+  const getSignedURL = api.post.downloadFile.useMutation({
     onSuccess: (data) => {
-      downloadRoute.getDownloadLink.invalidate()
+      downloadRoute.post.invalidate()
       if (data) {
         setImageArray((prevArray) => [...prevArray, data.link]);
       }
