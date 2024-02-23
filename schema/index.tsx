@@ -35,3 +35,11 @@ export const WrittingSchema = z.object({
     message: "a paragraph is required",
   })
 });
+
+
+// intro schema
+export const IntroSchema = z.object({
+    content: z.string().min(1, {
+      message: "Intro abit more about yourself"
+    })
+})
