@@ -29,7 +29,7 @@ const IntroForm = () => {
   const resultUserId = session?.user.id;
 
   const [introContent, setIntroContent] = useState<string>("");
-  const { setIntro, userIntroContent, setUserIntroContent } =
+  const { userIntroContent, setUserIntroContent, setIsAbout } =
     useProfilePageContext();
 
   const [fileUrl, setFileUrl] = useState<string | undefined>(undefined);
@@ -76,7 +76,7 @@ const IntroForm = () => {
 
   // handle on cancle
   const onCancle = () => {
-    setIntro(false);
+    setIsAbout(false);
   };
   return (
     <div className="mx-24">

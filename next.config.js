@@ -7,7 +7,7 @@ await import("./src/env.js");
 /** @type {import("next").NextConfig} */
 const config = {
     images: {
-        domains: ['lh3.googleusercontent.com', 'blog-picture.s3.ap-southeast-2.amazonaws.com']
+        domains: ['lh3.googleusercontent.com', 'blog-picture.s3.ap-southeast-2.amazonaws.com', 'intro-picture.s3.ap-southeast-2.amazonaws.com']
     }
 };
 

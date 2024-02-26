@@ -103,6 +103,11 @@ async function createPresignedUrl(bucketName: string, key: string) {
                 
                 
             }),
+        downloadIntroContent: protectedProcedure
+            .query(async({ctx}) => {
+              const intro =  await ctx.db.intro.findMany()
+              return intro
+            }),
         isUserIntro: protectedProcedure
             .query(async({ctx}) => {
               try {

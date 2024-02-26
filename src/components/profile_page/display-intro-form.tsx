@@ -1,33 +1,34 @@
-"use client";
-
 import Image from "next/image";
-import { useSession } from "next-auth/react";
-// TODO: TRPC for pofile Intro result 
 import { useProfilePageContext } from "./profile-page-context";
 
 import { useEffect } from "react";
+import { api } from "~/utils/api";
 
 const DisplayIntroResult = () => {
-  const { data: session } = useSession();
-  const userID = session?.user.id;
-  const userIntroContent = true;
-  let USER_INTRO_RESULT: string | null | undefined;
-  let USER_INTRO_PIC_RESULT: string | null | undefined;
-
+  const introPicture = api.profile.downloadIntroImage.useQuery();
+  const introContent = api.profile.downloadIntroContent.useQuery();
+  console.log(introContent.data && introContent.data[0]?.userIntro);
   return (
     <>
       <div>
-        <div className="flex flex-col">{USER_INTRO_RESULT}</div>
-        {USER_INTRO_PIC_RESULT ? (
+        <div className="flex flex-col">
+          {introContent.data ? introContent.data[0]?.userIntro : null}
+        </div>
+        {introPicture.data?.link ? (
           <div>
             <Image
-              src={USER_INTRO_PIC_RESULT}
+              src={introPicture.data?.link as string}
               alt="user intro picture"
-              width={40}
-              height={40}
+              width={100}
+              height={100}
             ></Image>
           </div>
         ) : null}
+        <div>
+          <button>
+            edit
+          </button>
+        </div>
       </div>
     </>
   );

@@ -1,5 +1,3 @@
-
-
 import NavBar from "~/components/shared/navbar-style-2";
 import ProfileMain from "~/components/profile_page/profile-main";
 import ProfileLeft from "~/components/profile_page/profile-left";
