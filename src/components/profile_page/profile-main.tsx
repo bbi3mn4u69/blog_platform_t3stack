@@ -4,11 +4,15 @@ import { MoreButton } from "../icon";
 import { useState } from "react";
 import { useProfilePageContext } from "./profile-page-context";
 import IntroForm from "./intro-form";
-import {Blog} from "./blog-list";
+import { Blog } from "./blog-list";
+import Banner from "./banner";
+import { api } from "~/utils/api";
 const ProfileMain = () => {
   const { data: session } = useSession();
   const { intro, setIntro } = useProfilePageContext();
 
+  const { isAbout, setIsAbout } = useProfilePageContext();
+  const userIntro  = api.profile.isUserIntro
   const [change, setChange] = useState<boolean>(true);
 
   // username
@@ -50,36 +54,9 @@ const ProfileMain = () => {
             </button>
           </div>
         </div>
-        {/* intro  */}
-        {change ? (
-          <div className="mx-24">
-           <Blog></Blog>
-          </div>
-        ) : (
-          <div>
-            {!intro ? (
-              <div className="mx-24 flex flex-col items-center justify-center bg-gray-100">
-                <div className="mb-5 mt-10 font-semibold">
-                  tell the world about yourself
-                </div>
-                <div className="px-auto my-5 max-w-96 text-center text-sm text-slate-700">
-                  Here’s where you can share more about yourself: your history,
-                  work experience, accomplishments, interests, dreams, and more.
-                  You can even add images and use rich text to personalize your
-                  bio.
-                </div>
-                <button
-                  onClick={onIntro}
-                  className="my-5 mb-10 rounded-full border border-black px-5 py-2"
-                >
-                  get started
-                </button>
-              </div>
-            ) : (
-              <IntroForm />
-            )}
-          </div>
-        )}
+
+        {/* home and about section */}
+        {/* {isabout ? () : (<Blog></Blog>) } */}
       </div>
     </>
   );

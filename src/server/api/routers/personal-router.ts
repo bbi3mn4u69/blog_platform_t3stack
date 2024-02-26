@@ -7,6 +7,7 @@ import { createTRPCRouter, protectedProcedure } from "../trpc";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { z } from "zod";
 import { IntroSchema } from "schema";
+import { TRPCError } from "@trpc/server";
 
 // set AWS credential for user intro
 
@@ -101,5 +102,22 @@ async function createPresignedUrl(bucketName: string, key: string) {
                 }
                 
                 
+            }),
+        isUserIntro: protectedProcedure
+            .query(async({ctx}) => {
+              try {
+                const isUserIntro = await ctx.db.intro.findMany()
+                if (isUserIntro) {
+                  return {success: isUserIntro}
+                }
+                throw new TRPCError({
+                  code: "NOT_FOUND",
+                })
+              } catch(e) {
+                console.error(e)
+              }
+              
+              
             })
+            
   })

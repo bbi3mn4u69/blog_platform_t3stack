@@ -8,6 +8,8 @@ interface ProfilePageProps {
     setIntro: React.Dispatch<React.SetStateAction<boolean>>,
     userIntroContent: boolean,
     setUserIntroContent: React.Dispatch<React.SetStateAction<boolean>>,
+    isAbout: boolean,
+    setIsAbout: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 
@@ -17,11 +19,14 @@ export const ProfilePageContext = createContext<ProfilePageProps | undefined> (u
 const ProfilePageContextProvider = ({children} : {children: ReactNode}) => {
     const [intro, setIntro] = useState<boolean>(false)
     const [userIntroContent, setUserIntroContent] = useState<boolean>(false)
+    const [isAbout, setIsAbout] = useState<boolean>(false)
     const value = {
         intro,
         setIntro,
         userIntroContent,
-        setUserIntroContent
+        setUserIntroContent,
+        isAbout,
+        setIsAbout
     }
     return (
         <ProfilePageContext.Provider value={value}> {children} </ProfilePageContext.Provider>
